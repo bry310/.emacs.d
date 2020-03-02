@@ -50,9 +50,10 @@
   :ensure t
   :config (which-key-mode))
 
-;; Org-mode stuff
- (use-package org-bullets
-    :ensure t
-        :init
-        (add-hook 'org-mode-hook (lambda ()
-                            (org-bullets-mode 1))))
+ Org-mode stuff
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+
