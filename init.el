@@ -1,14 +1,3 @@
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives
-'("melpa" . "https://melpa.org/packages/"));; stuff automatically added
-;;
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -25,17 +14,30 @@
  ;; If there is more than one, they won't work right.
  )
 
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; My Stuff
 
+
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
 
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 
 ;;UWI-Mona proxy
-(setq url-proxy-services
-      '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-        ("http" . "196.3.0.55:8080")
-        ("https" . "196.3.0.55:8080")))
+;;(setq url-proxy-services
+;;      '(("no_proxy" . "^\\(localhost\\|10.*\\)")
+;;        ("http" . "196.3.0.55:8080")
+;;        ("https" . "196.3.0.55:8080")))
 
 
 
@@ -65,7 +67,7 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-;;Python stuff
+;;Python Stuff
 
 (use-package elpy
   :ensure t
