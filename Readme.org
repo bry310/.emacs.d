@@ -30,7 +30,7 @@
    - Eclipse JDT Language Server
    * Provides the autocomplete support 
    * Must run "lsp-install-server RET jdtls RET" to install 
-   *Links
+   * Links
    + [[https://github.com/emacs-lsp/lsp-java][lsp-java]] (the git ripo of package needed)
 
 
