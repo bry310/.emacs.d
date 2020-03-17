@@ -1,9 +1,6 @@
 #+STARTUP: showall hidestars
 
 
-* Links
-[[google.com][Google]]
-[[youtube.com][Youtube]]
 
 * Lesson 1
 ** Part 1
@@ -19,5 +16,22 @@
  Show some org-mode
  - review inti.el
  - set up Readme.org
+
+
+
+
+* Python
+** Has syntax Hylighting 
+** But auto complete not working 
+
+* Java
+
+** Autocomplete and text hylight working
+** Eclipse JDT Language Server
+*** Provides the autocomplete support 
+*** Must run "lsp-install-server RET jdtls RET" to install 
+** Links
+*** [[https://github.com/emacs-lsp/lsp-java][lsp-java]] (the git ripo of package needed)
+
 
 
