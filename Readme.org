@@ -2,23 +2,6 @@
 
 
 
-* Lesson 1
-** Part 1
- Introducing the series and setting up the package manager
- - Show melpa 
- - set up
-
-** Installing some package 
- - install use-package
- - install try
- - install which-key
-* Lesson 2
- Show some org-mode
- - review inti.el
- - set up Readme.org
-
-
-
 * Programming Language Config 
 ** Python
  - Has syntax Hylighting 
@@ -33,5 +16,21 @@
    * Links
      - [[https://github.com/emacs-lsp/lsp-java][lsp-java]] (the git ripo of package needed)
 
+
+
+* Lesson 1
+** Part 1
+ Introducing the series and setting up the package manager
+ - Show melpa 
+ - set up
+
+** Installing some package 
+ - install use-package
+ - install try
+ - install which-key
+* Lesson 2
+ Show some org-mode
+ - review inti.el
+ - set up Readme.org
 
 
