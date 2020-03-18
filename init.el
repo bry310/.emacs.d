@@ -4,10 +4,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(jdee-server-dir "/home/bryan/Programs/myJars")
  '(package-selected-packages
    (quote
-    (counsel swiper dap-mode lsp-java lsp-ui company-lsp hydra lsp-mode projectile memoize flycheck elpy org-bullets which-key try use-package))))
+    (color-theme-modern counsel swiper dap-mode lsp-java lsp-ui company-lsp hydra lsp-mode projectile memoize flycheck elpy org-bullets which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -69,7 +73,7 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (setq indo-enable-flex-matching t)
-(setq ido-eberywhere t)
+(setq ido-everywhere t)
 (ido-mode 1)
 
 (defalias 'list-buffers 'ibuffer)
@@ -115,9 +119,16 @@
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
   ) 
 
+(use-package avy
+  :ensure t
+  :bind ("M-s" . avy-goto-char))
+
+
+
+
 ;;Python Stuff
 
-(use-package elpy
+(use-package elpy ;; TODO remove elpy and use lsp-mode
   :ensure t
   :init
   (elpy-enable))
@@ -155,3 +166,10 @@
   (dap-ui-mode t))
 
 (use-package dap-java :after (lsp-java))
+
+
+
+
+
+(use-package color-theme-modern
+  :ensure t )
