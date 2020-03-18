@@ -3,7 +3,7 @@
 
 
 * Programming Language Config 
-  - [[http://steve-yegge.blogspot.com/2008/01/emergency-elisp.html][elisp]] stuff
+  - [[http://steve-yegge.blogspot.com/2008/01/emergency-elisp.html][elisp]] stuff and [[https://github.com/chrisdone/elisp-guide][In 15 min]] git
 ** Python
  - Has syntax Hylighting 
  - But auto complete not working 
