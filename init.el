@@ -7,7 +7,7 @@
  '(jdee-server-dir "/home/bryan/Programs/myJars")
  '(package-selected-packages
    (quote
-    (swiper dap-mode lsp-java lsp-ui company-lsp hydra lsp-mode projectile memoize flycheck elpy org-bullets which-key try use-package))))
+    (counsel swiper dap-mode lsp-java lsp-ui company-lsp hydra lsp-mode projectile memoize flycheck elpy org-bullets which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -86,6 +86,9 @@
        ((t (:inherit ace-jump-face-foreground :height 3.0)))))
     ))
 
+(use-package counsel
+  :ensure t
+  )
 (use-package swiper
   :ensure t
   :config

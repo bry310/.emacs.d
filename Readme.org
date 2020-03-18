@@ -3,6 +3,7 @@
 
 
 * Programming Language Config 
+  - [[http://steve-yegge.blogspot.com/2008/01/emergency-elisp.html][elisp]] stuff
 ** Python
  - Has syntax Hylighting 
  - But auto complete not working 
@@ -28,6 +29,7 @@
  - install use-package
  - install try
  - install which-key
+ - intalled [[https://github.com/abo-abo/swiper/tree/8fae568daafdc79d4990ad739bac42ee230d3234][swiper]]
 * Lesson 2
  Show some org-mode
  - review inti.el
