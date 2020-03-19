@@ -1,30 +1,4 @@
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(custom-safe-themes
-   (quote
-    ("abd7719fd9255fcd64f631664390e2eb89768a290ee082a9f0520c5f12a660a8" "deb7ae3a735635a85c984ece4ce70317268df6027286998b0ea3d10f00764c9b" "e26e879d250140e0d4c4d5ab457c32bcb29742599bd28c1ce31301344c6f2a11" "cdc2a7ba4ecf0910f13ba207cce7080b58d9ed2234032113b8846a4e44597e41" "cb39485fd94dabefc5f2b729b963cbd0bac9461000c57eae454131ed4954a8ac" "0ca71d3462db28ebdef0529995c2d0fdb90650c8e31631e92b9f02bd1bfc5f36" "392f19e7788de27faf128a6f56325123c47205f477da227baf6a6a918f73b5dc" "7bd626fcc9fbfb44186cf3f08b8055d5a15e748d5338e47f9391d459586e20db" "be5b03913a1aaa3709d731e1fcfd4f162db6ca512df9196c8d4693538fa50b86" "a455366c5cdacebd8adaa99d50e37430b0170326e7640a688e9d9ad406e2edfd" default)))
- '(jdee-server-dir "/home/bryan/Programs/myJars")
- '(package-selected-packages
-   (quote
-    (jedi virtualenvwrapper lsp-ivy helm-lsp doom-modeline faff-theme zenburn-theme color-theme-modern counsel swiper dap-mode lsp-java lsp-ui company-lsp hydra lsp-mode projectile memoize flycheck org-bullets which-key try use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(aw-leading-char-face ((t (:foreground "red" :height 4.0))))
- '(lsp-ui-doc-background ((t (:background nil))))
- '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic))))))
-
-
 
 
 
@@ -176,7 +150,7 @@
 
 (use-package projectile :ensure t)
 (use-package yasnippet :ensure t)
-
+(use-package dash :ensure t) 
 (use-package lsp-mode
   :ensure t
   :commands lsp
@@ -184,7 +158,7 @@
   (lsp-auto-guess-root nil)
   (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
-  :hook ((python-mode) . lsp))
+  :hook ((python-mode c-mode c++-mode) . lsp))
 
 (use-package hydra :ensure t)
 
@@ -256,6 +230,12 @@
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 
+(use-package ccls
+  :ensure t
+  :hook
+  ((c-mode c++-mode objc-mode cuda-mode) .
+   (lambda () (require 'ccls) (lsp))))
+
 
 
 
@@ -275,3 +255,29 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(lsp-auto-guess-root nil)
+ '(lsp-prefer-flymake nil t)
+ '(lsp-ui-doc-border "black" t)
+ '(lsp-ui-doc-enable t t)
+ '(lsp-ui-doc-header t t)
+ '(lsp-ui-doc-include-signature t t)
+ '(lsp-ui-doc-position (quote top) t)
+ '(lsp-ui-sideline-enable nil t)
+ '(lsp-ui-sideline-ignore-duplicate t t)
+ '(lsp-ui-sideline-show-code-actions nil t)
+ '(package-selected-packages
+   (quote
+    (ccls zenburn-theme yasnippet which-key virtualenvwrapper use-package try pyvenv projectile org-bullets lsp-ui lsp-java lsp-ivy jedi highlight-indentation helm-lsp flycheck faff-theme doom-modeline dap-mode counsel company-lsp color-theme-modern))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(aw-leading-char-face ((t (:foreground "red" :height 4.0))))
+ '(lsp-ui-doc-background ((t (:background nil))))
+ '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic))))))
