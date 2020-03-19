@@ -14,13 +14,15 @@
  '(jdee-server-dir "/home/bryan/Programs/myJars")
  '(package-selected-packages
    (quote
-    (doom-modeline faff-theme zenburn-theme color-theme-modern counsel swiper dap-mode lsp-java lsp-ui company-lsp hydra lsp-mode projectile memoize flycheck elpy org-bullets which-key try use-package))))
+    (jedi virtualenvwrapper lsp-ivy helm-lsp doom-modeline faff-theme zenburn-theme color-theme-modern counsel swiper dap-mode lsp-java lsp-ui company-lsp hydra lsp-mode projectile memoize flycheck org-bullets which-key try use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(aw-leading-char-face ((t (:foreground "red" :height 4.0))))
+ '(lsp-ui-doc-background ((t (:background nil))))
+ '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic))))))
 
 
 
@@ -64,7 +66,7 @@
 	:ensure t)
 
 (use-package which-key
-	:ensure t 
+	:ensure t
 	:config
 	(which-key-mode))
 
@@ -131,14 +133,33 @@
 
 ;;Python Stuff
 
-(use-package elpy ;; TODO remove elpy and use lsp-mode
+;;(use-package elpy ;; TODO remove elpy and use lsp-mode
+;;  :ensure t
+;;  :init
+;;  (elpy-enable))
+
+(use-package virtualenvwrapper
+  :ensure t
+  :config
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
+
+;;(venv-workon "p3")
+(setq lsp-python-executable-cmd "python3")
+
+(use-package jedi
   :ensure t
   :init
-  (elpy-enable))
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'python-mode-hook 'jedi:ac-setup))
+
+(setq python-shell-interpreter "python3"
+      python-shell-interpreter-args "-i")
 
 (use-package flycheck
   :ensure t
-  )
+  :init
+  (global-flycheck-mode t))
 
 ;; Java
 (require 'cc-mode)
@@ -155,12 +176,65 @@
 
 (use-package projectile :ensure t)
 (use-package yasnippet :ensure t)
-(use-package lsp-mode :ensure t)
+
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :custom
+  (lsp-auto-guess-root nil)
+  (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
+  :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
+  :hook ((python-mode) . lsp))
+
 (use-package hydra :ensure t)
-(use-package company-lsp :ensure t)
-(use-package lsp-ui :ensure t)
+
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1)
+  
+  (global-company-mode t)
+  )
+
+(use-package company-lsp
+  :ensure t
+  :config
+  (setq company-lsp-enable-snippet t)
+  (push 'company-lsp company-backends)
+  )
+
+(use-package lsp-ui
+  :after lsp-mode
+  :diminish
+  :commands lsp-ui-mode
+  :custom-face
+  (lsp-ui-doc-background ((t (:background nil))))
+  (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
+  :bind (:map lsp-ui-mode-map
+              ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+              ([remap xref-find-references] . lsp-ui-peek-find-references)
+              ("C-c u" . lsp-ui-imenu))
+  :custom
+  (lsp-ui-doc-enable t)
+  (lsp-ui-doc-header t)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-position 'top)
+  (lsp-ui-doc-border (face-foreground 'default))
+  (lsp-ui-sideline-enable nil)
+  (lsp-ui-sideline-ignore-duplicate t)
+  (lsp-ui-sideline-show-code-actions nil)
+  :config
+  ;; Use lsp-ui-doc-webkit only in GUI
+  (setq lsp-ui-doc-use-webkit t)
+  ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
+  ;; https://github.com/emacs-lsp/lsp-ui/issues/243
+  (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
+    (setq mode-line-format nil)))
+
 (use-package lsp-java :ensure t :after lsp
   :config (add-hook 'java-mode-hook 'lsp))
+
 
 (use-package dap-mode
   :ensure t :after lsp-mode
@@ -169,6 +243,17 @@
   (dap-ui-mode t))
 
 (use-package dap-java :after (lsp-java))
+
+;; More lsp stuff
+
+;; optionally
+
+
+;; if you are helm user
+(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 
 
@@ -187,3 +272,6 @@
   :ensure t)
 (require 'doom-modeline)
 (load-theme 'zenburn t)
+
+(provide 'init)
+;;; init.el ends here
