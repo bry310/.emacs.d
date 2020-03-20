@@ -5,17 +5,17 @@
  ;; If there is more than one, they won't work right.
  '(lsp-auto-guess-root nil)
  '(lsp-prefer-flymake nil t)
- '(lsp-ui-doc-border "black" t)
- '(lsp-ui-doc-enable t t)
- '(lsp-ui-doc-header t t)
- '(lsp-ui-doc-include-signature t t)
- '(lsp-ui-doc-position (quote top) t)
- '(lsp-ui-sideline-enable nil t)
- '(lsp-ui-sideline-ignore-duplicate t t)
- '(lsp-ui-sideline-show-code-actions nil t)
+ '(lsp-ui-doc-border "black")
+ '(lsp-ui-doc-enable t)
+ '(lsp-ui-doc-header t)
+ '(lsp-ui-doc-include-signature t)
+ '(lsp-ui-doc-position (quote top))
+ '(lsp-ui-sideline-enable nil)
+ '(lsp-ui-sideline-ignore-duplicate t)
+ '(lsp-ui-sideline-show-code-actions nil)
  '(package-selected-packages
    (quote
-    (ccls zenburn-theme yasnippet which-key virtualenvwrapper use-package try pyvenv projectile org-bullets lsp-ui lsp-java lsp-ivy jedi highlight-indentation helm-lsp flycheck faff-theme doom-modeline dap-mode counsel company-lsp color-theme-modern))))
+    (latex-pretty-symbols ccls zenburn-theme yasnippet which-key virtualenvwrapper use-package try pyvenv projectile org-bullets lsp-ui lsp-java lsp-ivy jedi highlight-indentation helm-lsp flycheck faff-theme doom-modeline dap-mode counsel company-lsp color-theme-modern))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -234,6 +234,10 @@
 ;;Latex stuff
 ;;(require 'company-lsp)
 (add-to-list 'company-lsp-filter-candidates '(digestif . nil))
+(add-to-list 'company-backends 'company-math-symbols-unicode)
+(setq company-tooltip-align-annotations t)
+;;(use-package  latex-unicode-mode
+;;  :ensure t)
 
 (use-package lsp-java :ensure t :after lsp
   :config (add-hook 'java-mode-hook 'lsp))
@@ -248,9 +252,6 @@
 (use-package dap-java :after (lsp-java))
 
 ;; More lsp stuff
-
-;; optionally
-
 
 ;; if you are helm user
 (use-package helm-lsp :commands helm-lsp-workspace-symbol)
