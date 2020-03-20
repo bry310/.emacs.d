@@ -184,7 +184,7 @@
   (lsp-auto-guess-root nil)
   (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
-  :hook ((python-mode c-mode c++-mode) . lsp))
+  :hook ((python-mode c-mode c++-mode sh-mode tex-mode ) . lsp))
 
 (use-package hydra :ensure t)
 
@@ -231,6 +231,9 @@
   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
     (setq mode-line-format nil)))
+;;Latex stuff
+;;(require 'company-lsp)
+(add-to-list 'company-lsp-filter-candidates '(digestif . nil))
 
 (use-package lsp-java :ensure t :after lsp
   :config (add-hook 'java-mode-hook 'lsp))
