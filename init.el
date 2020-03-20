@@ -5,17 +5,17 @@
  ;; If there is more than one, they won't work right.
  '(lsp-auto-guess-root nil)
  '(lsp-prefer-flymake nil t)
- '(lsp-ui-doc-border "black")
- '(lsp-ui-doc-enable t)
- '(lsp-ui-doc-header t)
- '(lsp-ui-doc-include-signature t)
- '(lsp-ui-doc-position (quote top))
- '(lsp-ui-sideline-enable nil)
- '(lsp-ui-sideline-ignore-duplicate t)
- '(lsp-ui-sideline-show-code-actions nil)
+ '(lsp-ui-doc-border "black" t)
+ '(lsp-ui-doc-enable t t)
+ '(lsp-ui-doc-header t t)
+ '(lsp-ui-doc-include-signature t t)
+ '(lsp-ui-doc-position (quote top) t)
+ '(lsp-ui-sideline-enable nil t)
+ '(lsp-ui-sideline-ignore-duplicate t t)
+ '(lsp-ui-sideline-show-code-actions nil t)
  '(package-selected-packages
    (quote
-    (latex-pretty-symbols ccls zenburn-theme yasnippet which-key virtualenvwrapper use-package try pyvenv projectile org-bullets lsp-ui lsp-java lsp-ivy jedi highlight-indentation helm-lsp flycheck faff-theme doom-modeline dap-mode counsel company-lsp color-theme-modern))))
+    (magit latex-pretty-symbols ccls zenburn-theme yasnippet which-key virtualenvwrapper use-package try pyvenv projectile org-bullets lsp-ui lsp-java lsp-ivy jedi highlight-indentation helm-lsp flycheck faff-theme doom-modeline dap-mode counsel company-lsp color-theme-modern))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -122,7 +122,7 @@
   (global-set-key (kbd "C-x l") 'counsel-locate)
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-  ) 
+  )
 
 (use-package avy
   :ensure t
@@ -176,7 +176,7 @@
 
 (use-package projectile :ensure t)
 (use-package yasnippet :ensure t)
-(use-package dash :ensure t) 
+(use-package dash :ensure t)
 (use-package lsp-mode
   :ensure t
   :commands lsp
@@ -266,6 +266,11 @@
   ((c-mode c++-mode objc-mode cuda-mode) .
    (lambda () (require 'ccls) (lsp))))
 
+
+;;Git Stuff
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit)))
 
 
 

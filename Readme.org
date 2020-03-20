@@ -3,10 +3,12 @@
 
 
 * Programming Language Config 
-  - [[http://steve-yegge.blogspot.com/2008/01/emergency-elisp.html][elisp]] stuff and [[https://github.com/chrisdone/elisp-guide][In 15 min]] git
+ - [[http://steve-yegge.blogspot.com/2008/01/emergency-elisp.html][elisp]] stuff and [[https://github.com/chrisdone/elisp-guide][In 15 min]] git
+ - [[https://github.com/astoff/digestif][Digestif]] for latex lsp support  
+ - [[https://github.com/emacs-lsp/lsp-mode][lsp-mode github]] 
 ** Python
  - Has syntax Hylighting 
- - But auto complete not working 
+ - Using lsp-mode 
 
 ** Java
 
