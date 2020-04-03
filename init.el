@@ -70,6 +70,40 @@
 (package-refresh-contents)
 (package-install 'use-package))
 
+
+;;;Theme Stuff
+
+
+(use-package color-theme-modern
+  :ensure t )
+
+
+(use-package zenburn-theme
+  :ensure t )
+
+(use-package faff-theme
+  :ensure t )
+(use-package doom-modeline
+  :ensure t
+  :defer t
+  :hook (after-init . doom-modeline-init)
+  :config ;(all-the-icons-install-fonts)
+  )
+
+;(require 'doom-modeline)
+;(doom-modeline-mode 0)
+
+(use-package mood-one-theme
+  :ensure t)
+
+(use-package ewal-doom-themes
+  :ensure t
+  )
+
+(load-theme 'doom-one t)
+
+;;;End of Theme Stuff
+
 (use-package try
 	:ensure t)
 
@@ -283,37 +317,6 @@
   :bind (("C-x g" . magit)))
 
 
-
-(use-package color-theme-modern
-  :ensure t )
-
-
-(use-package zenburn-theme
-  :ensure t )
-
-(use-package faff-theme
-  :ensure t )
-(use-package doom-modeline
-  :ensure t
-  :defer t
-  :hook (after-init . doom-modeline-init)
-  :config (all-the-icons-install-fonts)
-  )
-
-;(require 'doom-modeline)
-;(doom-modeline-mode 0)
-
-
-
-
-(use-package mood-one-theme
-  :ensure t)
-
-(use-package ewal-doom-themes
-  :ensure t
-  )
-
-(load-theme 'doom-one t)
 
 (provide 'init)
 ;;; init.el ends here
