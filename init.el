@@ -1,9 +1,10 @@
+;;; Package 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(lsp-auto-guess-root nil)
+ '(lsp-auto-guess-root t)
  '(lsp-prefer-flymake nil t)
  '(lsp-ui-doc-border "black" t)
  '(lsp-ui-doc-enable t t)
@@ -163,6 +164,7 @@
 
 ;; Java
 (require 'cc-mode)
+(require 'cmake-mode)
 
 (condition-case nil
     (require 'use-package)
@@ -181,10 +183,10 @@
   :ensure t
   :commands lsp
   :custom
-  (lsp-auto-guess-root nil)
+  (lsp-auto-guess-root t)
   (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
-  :hook ((python-mode c-mode c++-mode sh-mode tex-mode ) . lsp))
+  :hook ((python-mode c-mode c++-mode sh-mode cmake-mode tex-mode ) . lsp))
 
 (use-package hydra :ensure t)
 
@@ -260,6 +262,7 @@
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 
+
 (use-package ccls
   :ensure t
   :hook
@@ -286,6 +289,8 @@
 (use-package doom-modeline
   :ensure t)
 (require 'doom-modeline)
+
+
 (load-theme 'zenburn t)
 
 (provide 'init)
